@@ -7,15 +7,13 @@ RUN apt-get update \
     && sudo apt install default-jdk -y
 
 # Set the working directory in the container
-WORKDIR /workspace/BankingAnalysis/
+WORKDIR /workspace/BaningAnalysis
 
 # Copy the current directory contents into the container at /workspace
-COPY . /workspace/BankingAnalysis/
+COPY . /workspace/BaningAnalysis
 
 # pip dependence
 RUN pip install --upgrade pip
+RUN pip install --upgrade setuptools
 
-# Install any needed packages specified in requirements.txt
-COPY requirements.txt /workspace/BankingAnalysis/
-RUN pip install -r requirements.txt && \
-    rm requirements.txt
+
