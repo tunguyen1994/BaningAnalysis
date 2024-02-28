@@ -1,0 +1,21 @@
+# Use an official Python runtime as a parent image
+FROM python:3.9
+
+# Install Docker CLI in the container
+RUN apt-get update \
+    && apt-get install -y sudo \
+    && sudo apt install default-jdk -y
+
+# Set the working directory in the container
+WORKDIR /workspace/BankingAnalysis/
+
+# Copy the current directory contents into the container at /workspace
+COPY . /workspace/BankingAnalysis/
+
+# pip dependence
+RUN pip install --upgrade pip
+
+# Install any needed packages specified in requirements.txt
+COPY requirements.txt /workspace/BankingAnalysis/
+RUN pip install -r requirements.txt && \
+    rm requirements.txt
